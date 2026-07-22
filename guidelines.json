@@ -1,0 +1,62 @@
+[
+    {
+        "id": "G01",
+        "title": "Secure Heavy Furniture",
+        "stage": "Before Earthquake",
+        "content": "Anchor top-heavy furniture, tall bookcases, and appliances to wall studs using brackets."
+    },
+    {
+        "id": "G02",
+        "title": "Prepare Emergency Kit",
+        "stage": "Before Earthquake",
+        "content": "Pack a 3-day supply of non-perishable food, water (3 liters/person/day), flashlight, and first-aid supplies."
+    },
+    {
+        "id": "G03",
+        "title": "Identify Safe Spots",
+        "stage": "Before Earthquake",
+        "content": "Locate sturdy tables or interior walls away from glass windows and heavy hanging objects."
+    },
+    {
+        "id": "G04",
+        "title": "Drop, Cover, and Hold On",
+        "stage": "During Earthquake",
+        "content": "DROP to hands and knees. COVER head and neck under a sturdy table. HOLD ON until shaking stops."
+    },
+    {
+        "id": "G05",
+        "title": "Stay Indoors in High-Rises",
+        "stage": "During Earthquake",
+        "content": "Do not run outside or use elevators during shaking. Stay away from windows and exterior walls in Dhaka."
+    },
+    {
+        "id": "G06",
+        "title": "If Outdoors, Move to Open Space",
+        "stage": "During Earthquake",
+        "content": "Move away from buildings, streetlights, electric wires, and narrow alleyways."
+    },
+    {
+        "id": "G07",
+        "title": "Check for Injuries",
+        "stage": "After Earthquake",
+        "content": "Provide basic first aid. Do not move seriously injured people unless they are in immediate danger."
+    },
+    {
+        "id": "G08",
+        "title": "Inspect Gas and Electrical Lines",
+        "stage": "After Earthquake",
+        "content": "If you smell gas or hear a hissing noise, open windows and turn off the main gas valve immediately."
+    },
+    {
+        "id": "G09",
+        "title": "Head to Safe Assembly Grounds",
+        "stage": "After Earthquake",
+        "content": "Evacuate using stairs. Proceed calmly to designated open fields or parks near your area."
+    },
+    {
+        "id": "G10",
+        "title": "Expect Aftershocks",
+        "stage": "After Earthquake",
+        "content": "Be prepared for secondary tremors. Follow safety instructions from official broadcasting channels."
+    }
+]
