@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+from functions.safe_ground import SafeGroundManager
+from gui.tab_safegrounds import build_safe_grounds_tab
+
 APP_TITLE = "Dhaka Earthquake Helper"
 APP_DESCRIPTION = (
     "After an earthquake, this tool shows which nearby hospitals have space, "
@@ -23,9 +26,16 @@ notebook = ttk.Notebook(root)
 notebook.pack(fill="both", expand=True, padx=16, pady=12)
 
 # Empty tabs for now. We will add them individually later.
+
 notebook.add(tk.Frame(notebook), text="Locate")
 notebook.add(tk.Frame(notebook), text="Guideline")
-notebook.add(tk.Frame(notebook), text="Safe Grounds")
+
+manager = SafeGroundManager() 
+
+safe_grounds_frame = tk.Frame(notebook)
+notebook.add(safe_grounds_frame, text="Safe Grounds")
+build_safe_grounds_tab(safe_grounds_frame, manager) 
+
 notebook.add(tk.Frame(notebook), text="History & Stats")
 
 root.mainloop()
