@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from gui.tab_guideline import GuidelineTab
 
 from functions.safe_ground import SafeGroundManager
 from gui.tab_safegrounds import build_safe_grounds_tab

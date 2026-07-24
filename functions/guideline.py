@@ -9,39 +9,62 @@ class Guideline:
 
         self.items = []
 
+        # Tuple
+        self.emergency_items = (
+            "Water",
+            "First Aid Kit",
+            "Flashlight",
+            "Emergency Food"
+        )
 
+        # Set
+        self.unique_names = set()
 
     def add_item(self, name, status):
 
+        if name == "":
+            raise ValueError("Name cannot be empty")
+
+        if status not in [0, 1]:
+            raise ValueError("Status must be 0 or 1")
+
+        if name in self.unique_names:
+            return False
+
+        self.unique_names.add(name)
+
         data = {
-
             "name": name,
-
             "status": status
-
         }
 
         self.items.append(data)
 
-
+        return True
 
     def save(self):
 
-        file = open(self.file, "w")
+        try:
 
-        for item in self.items:
+            file = open(self.file, "w")
 
-            line = item["name"] + "," + str(item["status"])
+            for item in self.items:
 
-            file.write(line + "\n")
+                line = item["name"] + "," + str(item["status"])
 
-        file.close()
+                file.write(line + "\n")
 
+            file.close()
 
+        except Exception as e:
+
+            print("Save Error:", e)
 
     def load(self):
 
         self.items.clear()
+
+        self.unique_names.clear()
 
         try:
 
@@ -54,28 +77,27 @@ class Guideline:
                 if len(data) == 2:
 
                     item = {
-
                         "name": data[0],
-
                         "status": int(data[1])
-
                     }
 
                     self.items.append(item)
 
+                    self.unique_names.add(data[0])
+
             file.close()
 
-        except:
+        except FileNotFoundError:
 
-            pass
+            print("Checklist file not found")
 
+        except Exception as e:
 
+            print("Load Error:", e)
 
     def total_item(self):
 
         return len(self.items)
-
-
 
     def ready_item(self):
 
@@ -89,7 +111,44 @@ class Guideline:
 
         return count
 
+    # Search
+    def search_item(self, name):
 
+        for item in self.items:
+
+            if item["name"] == name:
+
+                return item
+
+        return None
+
+    # Update
+    def update_item(self, name, status):
+
+        for item in self.items:
+
+            if item["name"] == name:
+
+                item["status"] = status
+
+                return True
+
+        return False
+
+    # Delete
+    def delete_item(self, name):
+
+        for item in self.items:
+
+            if item["name"] == name:
+
+                self.items.remove(item)
+
+                self.unique_names.discard(name)
+
+                return True
+
+        return False
 
     def statistics(self):
 
