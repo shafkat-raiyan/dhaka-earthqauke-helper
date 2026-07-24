@@ -1,0 +1,6 @@
+project_requirement.md
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
