@@ -27,7 +27,6 @@ notebook = ttk.Notebook(root)
 notebook.pack(fill="both", expand=True, padx=16, pady=12)
 
 
-
 locate_frame = tk.Frame(notebook)
 notebook.add(locate_frame, text="Locate")
 build_locate_tab(locate_frame)
