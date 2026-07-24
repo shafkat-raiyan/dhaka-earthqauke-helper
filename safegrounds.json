@@ -4,5 +4,11 @@
         "name": "Raiyan",
         "location": "Uttara",
         "capacity": 1000
+    },
+    {
+        "id": "3",
+        "name": "Hamim",
+        "location": "Mirpur",
+        "capacity": 5000
     }
 ]

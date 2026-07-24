@@ -42,10 +42,15 @@ manager = SafeGroundManager()
 store = DataStore()
 locator = EmergencyLocator(store)
 
-safe_grounds_frame = tk.Frame(notebook)
-notebook.add(safe_grounds_frame, text="Safe Grounds")
-build_safe_grounds_tab(safe_grounds_frame, manager) 
+# সাধারণ ইউজারদের জন্য Find Safe Grounds ট্যাব
+find_grounds_frame = tk.Frame(notebook)
+notebook.add(find_grounds_frame, text="Find Safe Grounds")
+build_find_grounds_tab(find_grounds_frame, manager)
 
+# অ্যাডমিনদের জন্য Manage Data ট্যাব
+manage_grounds_frame = tk.Frame(notebook)
+notebook.add(manage_grounds_frame, text="Manage Data (Admin)")
+build_manage_grounds_tab(manage_grounds_frame, manager)
 history_frame = HistoryTab(notebook, store, locator)
 notebook.add(history_frame, text="History & Stats")
 
