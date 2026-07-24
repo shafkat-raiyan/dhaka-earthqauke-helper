@@ -18,7 +18,7 @@ import json
 import os
 
 class SafeGroundManager:
-    def __init__(self, filename="safegrounds.json"):
+    def __init__(self, filename="data/safegrounds.json"):
         self.filename = filename
         self.grounds = {}       # Dictionary to store records (ID as key)
         self.used_ids = set()   # Set to enforce unique IDs
