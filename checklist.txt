@@ -1,0 +1,4 @@
+Water,1
+First Aid Kit,1
+Flashlight,0
+Emergency Food,0

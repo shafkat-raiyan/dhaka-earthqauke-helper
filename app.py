@@ -33,7 +33,8 @@ locate_frame = tk.Frame(notebook)
 notebook.add(locate_frame, text="Locate")
 build_locate_tab(locate_frame)
 
-notebook.add(tk.Frame(notebook), text="Guideline")
+guideline_frame = GuidelineTab(notebook)
+notebook.add(guideline_frame, text="Guideline")
 
 manager = SafeGroundManager() 
 store = DataStore()
