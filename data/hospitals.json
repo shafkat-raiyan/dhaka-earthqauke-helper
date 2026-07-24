@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Dhaka Medical College Hospital",
+        "type": "Public",
+        "location": "Shahbagh",
+        "patient_count": 500,
+        "coords": [23.7277, 90.3965]
+    },
+    {
+        "name": "Square Hospital",
+        "type": "Private",
+        "location": "Panthapath",
+        "patient_count": 320,
+        "coords": [23.7523, 90.3813]
+    },
+    {
+        "name": "Evercare Hospital Dhaka",
+        "type": "Private",
+        "location": "Bashundhara",
+        "patient_count": 280,
+        "coords": [23.8118, 90.4286]
+    },
+    {
+        "name": "United Hospital Limited",
+        "type": "Private",
+        "location": "Gulshan",
+        "patient_count": 250,
+        "coords": [23.8055, 90.4162]
+    },
+    {
+        "name": "BIRDEM General Hospital",
+        "type": "Public",
+        "location": "Shahbagh",
+        "patient_count": 410,
+        "coords": [23.7381, 90.3956]
+    },
+    {
+        "name": "Kurmitola General Hospital",
+        "type": "Public",
+        "location": "Cantonment",
+        "patient_count": 350,
+        "coords": [23.8166, 90.4001]
+    },
+    {
+        "name": "Ibn Sina Hospital",
+        "type": "Private",
+        "location": "Dhanmondi",
+        "patient_count": 190,
+        "coords": [23.7431, 90.3702]
+    },
+    {
+        "name": "Labaid Specialized Hospital",
+        "type": "Private",
+        "location": "Dhanmondi",
+        "patient_count": 210,
+        "coords": [23.7416, 90.3831]
+    },
+    {
+        "name": "Mugda Medical College & Hospital",
+        "type": "Public",
+        "location": "Mugda",
+        "patient_count": 380,
+        "coords": [23.7319, 90.4264]
+    },
+    {
+        "name": "Sir Salimullah Medical College (Mitford)",
+        "type": "Public",
+        "location": "Babubazar",
+        "patient_count": 450,
+        "coords": [23.7115, 90.3965]
+    },
+    {
+        "name": "Popular Medical College Hospital",
+        "type": "Private",
+        "location": "Dhanmondi",
+        "patient_count": 150,
+        "coords": [23.7401, 90.3813]
+    },
+    {
+        "name": "Holy Family Red Crescent Medical College",
+        "type": "Private",
+        "location": "Eskaton",
+        "patient_count": 220,
+        "coords": [23.7447, 90.4014]
+    }
+]
