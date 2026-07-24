@@ -80,15 +80,29 @@ def build_locate_tab(parent_frame):
             return
 
         if not age.isdigit():
-            messagebox.showerror("Error", "Age must be a positive number.")
+            messagebox.showerror("Error", "Age must be a valid number.")
+            return
+            
+        if int(age) < 1 or int(age) > 120:
+            messagebox.showerror("Error", "Age must be a valid number between 1 and 120.")
             return
 
         top_3 = locator.get_nearest_hospitals(loc_name, count=3)
 
-        result_text = f"Your Location: {loc_name}\n\nTop 3 Nearest Hospitals:\n" + "-"*30 + "\n"
-        for i, (dist, h) in enumerate(top_3, 1):
+        result_text = f"Your Location: {loc_name}\n\nTop 3 Nearest Hospitals:\n\n"
+        
+        counter = 1
+        for item in top_3:
+            dist = item[0]
+            h = item[1]
+            
             dist_km = dist * 111.0
-            result_text += f"{i}. {h.name}\n   Distance: ~{dist_km:.1f} km\n   Type: {h.type} | Patients: {h.patient_count}\n\n"
+            
+            result_text += f"{counter}. {h.name}\n"
+            result_text += f"   Distance: ~{dist_km:.1f} km\n"
+            result_text += f"   Type: {h.type} | Patients: {h.patient_count}\n\n"
+            
+            counter += 1
 
         display_area.config(state="normal")
         display_area.delete(1.0, tk.END)
