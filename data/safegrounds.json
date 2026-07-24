@@ -4,5 +4,11 @@
         "name": "Hamim",
         "location": "Mirpur",
         "capacity": 5000
+    },
+    {
+        "id": "2",
+        "name": "sdfsd",
+        "location": "sdfsdf",
+        "capacity": 66
     }
 ]
