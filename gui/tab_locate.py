@@ -38,7 +38,7 @@ def load_hospitals():
         return []
 
 
-def build_locate_tab(parent_frame):
+def build_locate_tab(parent_frame, store):
     locations = load_locations()
     hospitals = load_hospitals()
     location_names = list(locations.keys())
@@ -74,8 +74,10 @@ def build_locate_tab(parent_frame):
     def find_nearest_hospitals():
         loc_name = combo_loc.get()
         age = entry_age.get().strip()
+        gender = combo_gender.get()
+        severity = combo_severity.get()
 
-        if not loc_name or not age:
+        if not loc_name or not age or not gender or not severity:
             messagebox.showerror("Error", "Please fill in all fields.")
             return
 
@@ -88,6 +90,20 @@ def build_locate_tab(parent_frame):
             return
 
         top_3 = locator.get_nearest_hospitals(loc_name, count=3)
+        if not top_3:
+            messagebox.showerror("Error", "No hospital data is available.")
+            return
+
+       
+        recommended_hospital = top_3[0][1].name
+        store.add_log_entry({
+            "location": loc_name,
+            "age": int(age),
+            "gender": gender,
+            "priority": int(age) < 18 or gender == "Female",
+            "severity": severity,
+            "recommended_hospital": recommended_hospital,
+        })
 
         result_text = f"Your Location: {loc_name}\n\nTop 3 Nearest Hospitals:\n\n"
         

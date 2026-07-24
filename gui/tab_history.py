@@ -55,7 +55,7 @@ class HistoryTab(tk.Frame):
     def _build_ui(self):
         top = tk.Frame(self, bg="#f4f4f4")
         top.pack(fill="x")
-        tk.Label(top, text="Query History", font=FONT_BOLD, bg="#f4f4f4").pack(side="left")
+        tk.Label(top, text="Past Emergency Searches", font=FONT_BOLD, bg="#f4f4f4").pack(side="left")
         tk.Button(top, text="Export Summary", command=self.on_export).pack(side="right")
         tk.Button(top, text="Clear History", command=self.on_clear, bg="#d9534f", fg="white").pack(side="right", padx=(0, 6))
 
@@ -92,7 +92,7 @@ class HistoryTab(tk.Frame):
         self.listbox = tk.Listbox(self, font=("Segoe UI", 10))
         self.listbox.pack(fill="both", expand=True, pady=(6, 10))
 
-        tk.Label(self, text="Statistics", font=FONT_BOLD, bg="#f4f4f4").pack(anchor="w")
+        tk.Label(self, text="Search Summary", font=FONT_BOLD, bg="#f4f4f4").pack(anchor="w")
         self.stats_label = tk.Label(self, text="", bg="#fff", justify="left",
                                      padx=10, pady=10, highlightbackground="#ccc",
                                      highlightthickness=1, anchor="w")
@@ -137,7 +137,7 @@ class HistoryTab(tk.Frame):
 
         stats = self.locator.get_statistics()
         if not stats:
-            self.stats_label.config(text="No statistics yet - run a Locate search first.")
+            self.stats_label.config(text="No searches yet. Run a Locate search to create history and statistics.")
             return
         sc = stats["severity_counts"]
         text = (
