@@ -8,7 +8,40 @@ History & Statistics tab: shows past queries and aggregate stats.
 import tkinter as tk
 from tkinter import messagebox, filedialog, ttk
 
-from constants import FONT_BOLD
+FONT_BOLD = ("Segoe UI", 10, "bold")
+
+class EmergencyLocator:
+    def __init__(self, store):
+        self.store = store
+
+    def get_statistics(self):
+        if not self.store.log:
+            return None
+        
+        total_queries = len(self.store.log)
+        ages = [entry["age"] for entry in self.store.log]
+        average_age = sum(ages) / total_queries if total_queries > 0 else 0
+        youngest = min(ages) if ages else 0
+        oldest = max(ages) if ages else 0
+        
+        priority_count = sum(1 for entry in self.store.log if entry["priority"])
+        priority_percent = (priority_count / total_queries * 100) if total_queries > 0 else 0
+        
+        severity_counts = {"Minor": 0, "Moderate": 0, "Severe": 0}
+        for entry in self.store.log:
+            sev = entry["severity"]
+            if sev in severity_counts:
+                severity_counts[sev] += 1
+                
+        return {
+            "total_queries": total_queries,
+            "average_age": average_age,
+            "youngest": youngest,
+            "oldest": oldest,
+            "priority_count": priority_count,
+            "priority_percent": priority_percent,
+            "severity_counts": severity_counts
+        }
 
 
 class HistoryTab(tk.Frame):
@@ -154,13 +187,10 @@ class HistoryTab(tk.Frame):
             self.refresh()
             self.export_status.config(text="Query history cleared.", fg="#d9534f")
 
-
-
 if __name__ == "__main__":
     import sys, os
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from functions.storage import DataStore
-    from functions.locator import EmergencyLocator
 
     root = tk.Tk()
     root.title("tab_history.py standalone test")

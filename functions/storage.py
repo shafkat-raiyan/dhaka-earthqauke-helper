@@ -8,7 +8,38 @@ crashes the app.
 """
 
 import os
-from .models import Hospital, Ground, DELIMITER
+DELIMITER = ","
+
+class Hospital:
+    def __init__(self, name, location, total_beds, available_beds):
+        self.name = name.strip()
+        self.location = location.strip()
+        self.total_beds = int(total_beds)
+        self.available_beds = int(available_beds)
+
+    @classmethod
+    def from_line(cls, line):
+        parts = line.split(DELIMITER)
+        return cls(parts[0], parts[1], parts[2], parts[3])
+
+    def to_line(self):
+        return DELIMITER.join([self.name, self.location, str(self.total_beds), str(self.available_beds)])
+
+
+class Ground:
+    def __init__(self, ground_id, name, location, capacity):
+        self.ground_id = str(ground_id).strip()
+        self.name = str(name).strip()
+        self.location = str(location).strip()
+        self.capacity = int(capacity)
+
+    @classmethod
+    def from_line(cls, line):
+        parts = line.split(DELIMITER)
+        return cls(parts[0], parts[1], parts[2], parts[3])
+
+    def to_line(self):
+        return DELIMITER.join([self.ground_id, self.name, self.location, str(self.capacity)])
 
 
 class DataStore:
@@ -176,7 +207,7 @@ class DataStore:
                 writer.writerow([])
                 writer.writerow([])
                 
-                # Section 2: Detailed Logs
+               
                 writer.writerow(["Detailed Query History"])
                 writer.writerow(["Location", "Age", "Gender", "Priority Case", "Severity", "Recommended Hospital"])
                 for entry in reversed(self.log):

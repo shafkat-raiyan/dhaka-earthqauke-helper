@@ -4,6 +4,8 @@ from tkinter import ttk
 from functions.safe_ground import SafeGroundManager
 from gui.tab_safegrounds import build_safe_grounds_tab
 from gui.tab_locate import build_locate_tab
+from functions.storage import DataStore
+from gui.tab_history import HistoryTab, EmergencyLocator
 
 APP_TITLE = "Dhaka Earthquake Helper"
 APP_DESCRIPTION = (
@@ -34,11 +36,14 @@ build_locate_tab(locate_frame)
 notebook.add(tk.Frame(notebook), text="Guideline")
 
 manager = SafeGroundManager() 
+store = DataStore()
+locator = EmergencyLocator(store)
 
 safe_grounds_frame = tk.Frame(notebook)
 notebook.add(safe_grounds_frame, text="Safe Grounds")
 build_safe_grounds_tab(safe_grounds_frame, manager) 
 
-notebook.add(tk.Frame(notebook), text="History & Stats")
+history_frame = HistoryTab(notebook, store, locator)
+notebook.add(history_frame, text="History & Stats")
 
 root.mainloop()
