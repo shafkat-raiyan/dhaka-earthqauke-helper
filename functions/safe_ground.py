@@ -6,7 +6,7 @@ class SafeGround:
         self.capacity = int(capacity)
 
     def to_dict(self):
-        # Useful for saving data later
+    
         return {
             "id": self.ground_id,
             "name": self.name,
@@ -20,13 +20,13 @@ import os
 class SafeGroundManager:
     def __init__(self, filename="data/safegrounds.json"):
         self.filename = filename
-        self.grounds = {}       # Dictionary to store records (ID as key)
-        self.used_ids = set()   # Set to enforce unique IDs
+        self.grounds = {}       
+        self.used_ids = set() 
         self.load_data()
 
     def load_data(self):
         if not os.path.exists(self.filename):
-            return # Missing file handling: do nothing, file created on save
+            return 
         
         try:
             with open(self.filename, 'r') as file:
@@ -36,7 +36,7 @@ class SafeGroundManager:
                     self.grounds[sg.ground_id] = sg
                     self.used_ids.add(sg.ground_id)
         except (json.JSONDecodeError, KeyError):
-            pass # Handles empty or corrupted files safely
+            pass 
 
     def save_data(self):
         with open(self.filename, 'w') as file:

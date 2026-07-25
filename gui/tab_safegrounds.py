@@ -1,9 +1,6 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, filedialog  # এখানে filedialog যুক্ত করা হয়েছে
+from tkinter import ttk, messagebox, filedialog  
 
-# ==========================================
-# সাধারণ ইউজারদের জন্য (Find Safe Grounds)
-# ==========================================
 def build_find_grounds_tab(parent_frame, manager):
     search_frame = tk.Frame(parent_frame, padx=10, pady=10)
     search_frame.pack(fill="x")
@@ -34,15 +31,15 @@ def build_find_grounds_tab(parent_frame, manager):
         search_var.set("")
         refresh_list()
 
-    # --- এক্সপোর্ট করার নতুন ফাংশন ---
+    
     def export_list():
-        # চেক করা হচ্ছে টেবিলে কোনো ডেটা আছে কিনা
+        
         children = tree.get_children()
         if not children:
             messagebox.showwarning("Warning", "The list is empty. Nothing to export.")
             return
         
-        # ইউজার কোথায় ফাইল সেভ করতে চায় তার ডায়লগ বক্স
+        
         filepath = filedialog.asksaveasfilename(
             defaultextension=".txt",
             filetypes=[("Text Files", "*.txt")],
@@ -51,15 +48,14 @@ def build_find_grounds_tab(parent_frame, manager):
         )
         
         if not filepath:
-            return  # ইউজার সেভ না করে ক্যানসেল করে দিলে ফিরে আসবে
+            return  
             
         try:
-            # File Handling: .txt ফাইলে ডেটা রাইট (Write) করা হচ্ছে
+           
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write("Dhaka Earthquake Helper - Safe Grounds List\n")
                 f.write("=" * 50 + "\n")
                 
-                # টেবিলের বর্তমান ডেটাগুলো ফাইলে লেখা
                 for row_id in children:
                     item = tree.item(row_id)
                     values = item['values']
@@ -72,19 +68,15 @@ def build_find_grounds_tab(parent_frame, manager):
         except Exception as e:
             messagebox.showerror("Error", f"Could not save file: {e}")
 
-    # বাটনগুলো যুক্ত করা
+    
     tk.Button(search_frame, text="Search", command=search_data, bg="#cce5ff", width=10).pack(side="left", padx=5)
     tk.Button(search_frame, text="Reset", command=reset_search, bg="#e2e3e5", width=10).pack(side="left", padx=5)
     
-    # নতুন Export List বাটন
     tk.Button(search_frame, text="Export List", command=export_list, bg="#d4edda", width=15).pack(side="left", padx=20)
     
     refresh_list()
 
 
-# ==========================================
-# অ্যাডমিন/ম্যানেজারদের জন্য (Manage Data)
-# ==========================================
 def build_manage_grounds_tab(parent_frame, manager):
     input_frame = tk.Frame(parent_frame, padx=10, pady=10)
     input_frame.pack(fill="x")
