@@ -24,13 +24,18 @@ def load_hospitals():
                 loc = h["location"]
                 count = h["patient_count"]
                 
+                if "max_capacity" in h:
+                    max_cap = h["max_capacity"]
+                else:
+                    max_cap = 0
+                
                 if "coords" in h:
                     coords = h["coords"]
                 else:
                     coords = None
                 
                 
-                new_hospital = Hospital(name, h_type, loc, count, coords)
+                new_hospital = Hospital(name, h_type, loc, count, max_cap, coords)
                 hospital_list.append(new_hospital)
                 
             return hospital_list
@@ -67,7 +72,9 @@ def build_locate_tab(parent_frame, store):
     combo_severity = ttk.Combobox(left_frame, values=["Minor", "Moderate", "Severe"], state="readonly", width=18)
     combo_severity.grid(row=4, column=1, pady=10)
 
-
+    priority_var = tk.BooleanVar()
+    chk_priority = tk.Checkbutton(left_frame, text="Priority (Woman/Children/Severe Injury)", variable=priority_var)
+    chk_priority.grid(row=5, column=0, columnspan=2, pady=(10, 0), sticky="w")
 
     locator = EmergencyLocator(hospitals, locations)
 
@@ -94,16 +101,18 @@ def build_locate_tab(parent_frame, store):
             messagebox.showerror("Error", "No hospital data is available.")
             return
 
-       
+        is_priority = priority_var.get()
+
         recommended_hospital = top_3[0][1].name
         store.add_log_entry({
             "location": loc_name,
             "age": int(age),
             "gender": gender,
-            "priority": int(age) < 18 or gender == "Female",
+            "priority": is_priority,
             "severity": severity,
             "recommended_hospital": recommended_hospital,
         })
+
 
         result_text = f"Your Location: {loc_name}\n\nTop 3 Nearest Hospitals:\n\n"
         
@@ -113,10 +122,17 @@ def build_locate_tab(parent_frame, store):
             h = item[1]
             
             dist_km = dist * 111.0
+            cap_percent = h.get_capacity_percent()
             
-            result_text += f"{counter}. {h.name}\n"
+            tag = ""
+            if is_priority and cap_percent >= 90:
+                tag = " (Not Recommended - Full)"
+            elif is_priority and cap_percent < 90:
+                tag = " (Recommended)"
+            
+            result_text += f"{counter}. {h.name}{tag}\n"
             result_text += f"   Distance: ~{dist_km:.1f} km\n"
-            result_text += f"   Type: {h.type} | Patients: {h.patient_count}\n\n"
+            result_text += f"   Type: {h.type} | Capacity: {cap_percent:.0f}%\n\n"
             
             counter += 1
 
@@ -126,7 +142,7 @@ def build_locate_tab(parent_frame, store):
         display_area.config(state="disabled")
 
     btn_locate = tk.Button(left_frame, text="Locate Nearest Help", bg="#007bff", fg="white", font=("Segoe UI", 10, "bold"), command=find_nearest_hospitals)
-    btn_locate.grid(row=5, column=0, columnspan=2, pady=20, sticky="ew")
+    btn_locate.grid(row=6, column=0, columnspan=2, pady=20, sticky="ew")
 
     tk.Label(right_frame, text="Emergency Recommendations", font=("Segoe UI", 12, "bold")).pack(anchor="w", pady=(0, 10))
     display_area = tk.Text(right_frame, font=("Segoe UI", 11), bg="#ffffff", relief="solid", bd=1, padx=10, pady=10)
