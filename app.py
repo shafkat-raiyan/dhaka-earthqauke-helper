@@ -3,7 +3,8 @@ from tkinter import ttk
 from gui.tab_guideline import GuidelineTab
 
 from functions.safe_ground import SafeGroundManager
-from gui.tab_safegrounds import build_safe_grounds_tab
+from gui.tab_safegrounds import build_find_grounds_tab, build_manage_grounds_tab
+
 from gui.tab_locate import build_locate_tab
 from functions.storage import DataStore
 from gui.tab_history import HistoryTab, EmergencyLocator
@@ -32,7 +33,6 @@ notebook.pack(fill="both", expand=True, padx=16, pady=12)
 
 locate_frame = tk.Frame(notebook)
 notebook.add(locate_frame, text="Locate")
-build_locate_tab(locate_frame)
 
 guideline_frame = GuidelineTab(notebook)
 notebook.add(guideline_frame, text="Guideline")
@@ -40,12 +40,27 @@ notebook.add(guideline_frame, text="Guideline")
 manager = SafeGroundManager() 
 store = DataStore()
 locator = EmergencyLocator(store)
+build_locate_tab(locate_frame, store)
 
-safe_grounds_frame = tk.Frame(notebook)
-notebook.add(safe_grounds_frame, text="Safe Grounds")
-build_safe_grounds_tab(safe_grounds_frame, manager) 
 
+find_grounds_frame = tk.Frame(notebook)
+notebook.add(find_grounds_frame, text="Find Safe Grounds")
+build_find_grounds_tab(find_grounds_frame, manager)
+
+
+manage_grounds_frame = tk.Frame(notebook)
+notebook.add(manage_grounds_frame, text="Manage Grounds")
+build_manage_grounds_tab(manage_grounds_frame, manager)
 history_frame = HistoryTab(notebook, store, locator)
 notebook.add(history_frame, text="History & Stats")
+
+
+def refresh_history_when_opened(event):
+    """Show searches made since the previous visit to the History tab."""
+    if event.widget.select() == str(history_frame):
+        history_frame.refresh()
+
+
+notebook.bind("<<NotebookTabChanged>>", refresh_history_when_opened)
 
 root.mainloop()
