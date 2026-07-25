@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import json
-import numpy as np
 from functions.hospitals import Hospital
 from functions.locator import EmergencyLocator
 
