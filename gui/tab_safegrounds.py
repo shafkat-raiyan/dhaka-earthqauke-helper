@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog  # এখানে filedialog যুক্ত করা হয়েছে
 
 # ==========================================
 # সাধারণ ইউজারদের জন্য (Find Safe Grounds)
@@ -34,8 +34,50 @@ def build_find_grounds_tab(parent_frame, manager):
         search_var.set("")
         refresh_list()
 
+    # --- এক্সপোর্ট করার নতুন ফাংশন ---
+    def export_list():
+        # চেক করা হচ্ছে টেবিলে কোনো ডেটা আছে কিনা
+        children = tree.get_children()
+        if not children:
+            messagebox.showwarning("Warning", "The list is empty. Nothing to export.")
+            return
+        
+        # ইউজার কোথায় ফাইল সেভ করতে চায় তার ডায়লগ বক্স
+        filepath = filedialog.asksaveasfilename(
+            defaultextension=".txt",
+            filetypes=[("Text Files", "*.txt")],
+            title="Save Safe Grounds List",
+            initialfile="Safe_Grounds_List.txt"
+        )
+        
+        if not filepath:
+            return  # ইউজার সেভ না করে ক্যানসেল করে দিলে ফিরে আসবে
+            
+        try:
+            # File Handling: .txt ফাইলে ডেটা রাইট (Write) করা হচ্ছে
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write("Dhaka Earthquake Helper - Safe Grounds List\n")
+                f.write("=" * 50 + "\n")
+                
+                # টেবিলের বর্তমান ডেটাগুলো ফাইলে লেখা
+                for row_id in children:
+                    item = tree.item(row_id)
+                    values = item['values']
+                    f.write(f"Ground Name : {values[1]}\n")
+                    f.write(f"Location    : {values[2]}\n")
+                    f.write(f"Capacity    : {values[3]} people\n")
+                    f.write("-" * 30 + "\n")
+                    
+            messagebox.showinfo("Success", "Safe grounds list exported successfully!")
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not save file: {e}")
+
+    # বাটনগুলো যুক্ত করা
     tk.Button(search_frame, text="Search", command=search_data, bg="#cce5ff", width=10).pack(side="left", padx=5)
-    tk.Button(search_frame, text="Reset / Refresh", command=reset_search, bg="#e2e3e5", width=15).pack(side="left", padx=5)
+    tk.Button(search_frame, text="Reset", command=reset_search, bg="#e2e3e5", width=10).pack(side="left", padx=5)
+    
+    # নতুন Export List বাটন
+    tk.Button(search_frame, text="Export List", command=export_list, bg="#d4edda", width=15).pack(side="left", padx=20)
     
     refresh_list()
 
