@@ -4,6 +4,7 @@
         "type": "Public",
         "location": "Shahbagh",
         "patient_count": 500,
+        "max_capacity": 600,
         "coords": [23.7277, 90.3965]
     },
     {
@@ -11,6 +12,7 @@
         "type": "Private",
         "location": "Panthapath",
         "patient_count": 320,
+        "max_capacity": 350,
         "coords": [23.7523, 90.3813]
     },
     {
@@ -18,6 +20,7 @@
         "type": "Private",
         "location": "Bashundhara",
         "patient_count": 280,
+        "max_capacity": 400,
         "coords": [23.8118, 90.4286]
     },
     {
@@ -25,6 +28,7 @@
         "type": "Private",
         "location": "Gulshan",
         "patient_count": 250,
+        "max_capacity": 300,
         "coords": [23.8055, 90.4162]
     },
     {
@@ -32,6 +36,7 @@
         "type": "Public",
         "location": "Shahbagh",
         "patient_count": 410,
+        "max_capacity": 450,
         "coords": [23.7381, 90.3956]
     },
     {
@@ -39,6 +44,7 @@
         "type": "Public",
         "location": "Cantonment",
         "patient_count": 350,
+        "max_capacity": 500,
         "coords": [23.8166, 90.4001]
     },
     {
@@ -46,6 +52,7 @@
         "type": "Private",
         "location": "Dhanmondi",
         "patient_count": 190,
+        "max_capacity": 200,
         "coords": [23.7431, 90.3702]
     },
     {
@@ -53,6 +60,7 @@
         "type": "Private",
         "location": "Dhanmondi",
         "patient_count": 210,
+        "max_capacity": 250,
         "coords": [23.7416, 90.3831]
     },
     {
@@ -60,6 +68,7 @@
         "type": "Public",
         "location": "Mugda",
         "patient_count": 380,
+        "max_capacity": 400,
         "coords": [23.7319, 90.4264]
     },
     {
@@ -67,6 +76,7 @@
         "type": "Public",
         "location": "Babubazar",
         "patient_count": 450,
+        "max_capacity": 500,
         "coords": [23.7115, 90.3965]
     },
     {
@@ -74,6 +84,7 @@
         "type": "Private",
         "location": "Dhanmondi",
         "patient_count": 150,
+        "max_capacity": 200,
         "coords": [23.7401, 90.3813]
     },
     {
@@ -81,6 +92,7 @@
         "type": "Private",
         "location": "Eskaton",
         "patient_count": 220,
+        "max_capacity": 250,
         "coords": [23.7447, 90.4014]
     }
 ]
