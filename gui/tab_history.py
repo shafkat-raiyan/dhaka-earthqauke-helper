@@ -1,10 +1,3 @@
-"""
-tab_history.py
-Owner: Member C
-
-History & Statistics tab: shows past queries and aggregate stats.
-"""
-
 import tkinter as tk
 from tkinter import messagebox, filedialog, ttk
 
@@ -110,13 +103,12 @@ class HistoryTab(tk.Frame):
         
         filtered_entries = []
         for entry in self.store.log:
-            # 1. Location search filter
             if search_query and search_query not in entry["location"].lower():
                 continue
-            # 2. Severity filter
+            
             if sev_filter != "All" and entry["severity"] != sev_filter:
                 continue
-            # 3. Priority filter
+            
             if pri_filter == "Priority Only" and not entry["priority"]:
                 continue
             if pri_filter == "Standard Only" and entry["priority"]:

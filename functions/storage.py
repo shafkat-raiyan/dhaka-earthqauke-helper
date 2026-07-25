@@ -1,12 +1,3 @@
-"""
-storage.py
-Owner: Member C
-
-DataStore class: all file reading/writing for hospitals, grounds, and the
-query log. Every read is wrapped so a missing or corrupted file never
-crashes the app.
-"""
-
 import os
 DELIMITER = ","
 
@@ -43,14 +34,13 @@ class Ground:
 
 
 class DataStore:
-    """Owns data.txt (hospitals + grounds) and query_log.txt (query history)."""
 
     def __init__(self, data_file="data/data.txt", log_file="data/query_log.txt"):
         self.data_file = data_file
         self.log_file = log_file
-        self.hospitals = []   # list of Hospital objects
-        self.grounds = []     # list of Ground objects
-        self.log = []         # list of dict records (query history)
+        self.hospitals = []   
+        self.grounds = []     
+        self.log = []         
 
         self.load_data()
         self.load_log()
@@ -58,7 +48,6 @@ class DataStore:
    
 
     def load_data(self):
-        """Load hospital/ground data from a text file. Skips bad lines instead of crashing."""
         section = None
         seen_names = set()  
 
@@ -106,7 +95,6 @@ class DataStore:
     
 
     def load_log(self):
-        """Load past query history from a text file. Starts fresh if missing/corrupted."""
         if not os.path.exists(self.log_file):
             self.log = []
             return
@@ -155,7 +143,7 @@ class DataStore:
    
 
     def export_summary(self, stats, path="session_summary.txt"):
-        """Writes the current statistics to a plain text file the user can hand off."""
+        
         try:
             with open(path, "w") as f:
                 f.write("Dhaka Earthquake Helper - Session Summary\n")
@@ -176,12 +164,10 @@ class DataStore:
             return False
 
     def clear_log(self):
-        """Clears all historical query logs from memory and the log file."""
         self.log = []
         self.save_log()
 
     def export_to_csv(self, stats, path):
-        """Exports session summary statistics and all query logs to a CSV file."""
         import csv
         try:
             with open(path, "w", newline="", encoding="utf-8") as f:

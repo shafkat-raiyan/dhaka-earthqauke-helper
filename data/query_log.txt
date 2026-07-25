@@ -1,2 +1,0 @@
-Banani,30,Female,True,Moderate,United Hospital Limited
-Badda,69,Female,True,Moderate,United Hospital Limited
