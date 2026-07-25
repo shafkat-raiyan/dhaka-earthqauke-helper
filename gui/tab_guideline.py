@@ -21,30 +21,6 @@ class GuidelineTab(tk.Frame):
 
 
 
-    def load_guideline_text(self):
-
-        try:
-
-            file = open(
-                "guideline.txt",
-                "r",
-                encoding="utf-8"
-            )
-
-            text = file.read()
-
-            file.close()
-
-            return text
-
-
-        except:
-
-            return "Guideline file not found"
-
-
-
-
     def create_gui(self):
 
         title = tk.Label(
@@ -57,16 +33,59 @@ class GuidelineTab(tk.Frame):
 
 
 
-        guideline = self.load_guideline_text()
+        guideline = """
+BEFORE EARTHQUAKE
+
+• Prepare emergency kit
+• Keep important documents safe
+• Save emergency contact numbers
 
 
-        tk.Label(
+DURING EARTHQUAKE
+
+• Drop, Cover and Hold
+• Stay away from windows
+• Do not use elevators
+
+
+AFTER EARTHQUAKE
+
+• Check injuries
+• Move to open safe areas
+• Help injured people
+
+
+EMERGENCY KIT
+
+• Water
+• First Aid Kit
+• Flashlight
+• Emergency Food
+"""
+
+
+
+        text_box = tk.Text(
             self,
-            text=guideline,
-            justify="left",
-            font=("Arial", 11)
-        ).pack(anchor="w", padx=20)
+            height=13,
+            width=70,
+            font=("Arial", 11),
+            wrap="word"
+        )
 
+        text_box.insert(
+            "1.0",
+            guideline
+        )
+
+        text_box.config(
+            state="disabled"
+        )
+
+        text_box.pack(
+            padx=20,
+            pady=5
+        )
 
 
 
@@ -74,7 +93,7 @@ class GuidelineTab(tk.Frame):
             self,
             text="Emergency Checklist",
             font=("Arial", 12, "bold")
-        ).pack(pady=10)
+        ).pack(pady=5)
 
 
 
@@ -83,8 +102,7 @@ class GuidelineTab(tk.Frame):
             self,
             text="Water",
             variable=self.water
-        ).pack(anchor="w")
-
+        ).pack(anchor="w", padx=20)
 
 
 
@@ -92,8 +110,7 @@ class GuidelineTab(tk.Frame):
             self,
             text="First Aid Kit",
             variable=self.firstaid
-        ).pack(anchor="w")
-
+        ).pack(anchor="w", padx=20)
 
 
 
@@ -101,8 +118,7 @@ class GuidelineTab(tk.Frame):
             self,
             text="Flashlight",
             variable=self.flashlight
-        ).pack(anchor="w")
-
+        ).pack(anchor="w", padx=20)
 
 
 
@@ -110,8 +126,7 @@ class GuidelineTab(tk.Frame):
             self,
             text="Emergency Food",
             variable=self.food
-        ).pack(anchor="w")
-
+        ).pack(anchor="w", padx=20)
 
 
 
@@ -123,12 +138,12 @@ class GuidelineTab(tk.Frame):
 
 
 
-
         tk.Button(
             self,
             text="Show Statistics",
             command=self.show_stats
         ).pack()
+
 
 
 
@@ -194,11 +209,9 @@ class GuidelineTab(tk.Frame):
 
 
 
-
         if checked_items == "":
 
             checked_items = "No item prepared"
-
 
 
 
