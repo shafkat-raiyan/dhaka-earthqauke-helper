@@ -10,15 +10,11 @@ class Guideline:
         self.items = []
 
 
-
     def add_item(self, name, status):
 
         data = {
-
             "name": name,
-
             "status": status
-
         }
 
         self.items.append(data)
@@ -35,6 +31,7 @@ class Guideline:
 
             file.write(line + "\n")
 
+
         file.close()
 
 
@@ -47,23 +44,24 @@ class Guideline:
 
             file = open(self.file, "r")
 
+
             for line in file:
 
                 data = line.strip().split(",")
 
+
                 if len(data) == 2:
 
                     item = {
-
                         "name": data[0],
-
                         "status": int(data[1])
-
                     }
 
                     self.items.append(item)
 
+
             file.close()
+
 
         except:
 
@@ -81,11 +79,13 @@ class Guideline:
 
         count = 0
 
+
         for item in self.items:
 
             if item["status"] == 1:
 
-                count = count + 1
+                count += 1
+
 
         return count
 
@@ -95,20 +95,27 @@ class Guideline:
 
         status = []
 
+
         for item in self.items:
 
             status.append(item["status"])
 
+
+
         if len(status) == 0:
 
-            return 0, 0, 0
+            return 0,0,0
+
+
 
         arr = np.array(status)
+
 
         total = len(arr)
 
         ready = np.sum(arr)
 
-        percent = np.mean(arr) * 100
+        percent = np.mean(arr)*100
+
 
         return total, ready, percent
