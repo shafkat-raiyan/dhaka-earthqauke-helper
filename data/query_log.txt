@@ -1,0 +1,4 @@
+Badda,21,Female,True,Severe,United Hospital Limited
+Badda,21,Female,True,Severe,United Hospital Limited
+Badda,22,Female,True,Severe,United Hospital Limited
+Badda,22,Female,True,Severe,United Hospital Limited
